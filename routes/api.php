@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Api')->prefix('v1')->group(function(){
 	Route::post('/webhook','LineWebhookController@handler')->name('webhook.handler');
+    Route::get('/loadschedule','ScheduleController@loadSchedule');
+    Route::post('/postdata','ScheduleController@postData');
 });
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
 	return $request->user();

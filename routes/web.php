@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/set', function () {
+    return view('set');
+});
+
 Route::get('ServerImg/{file_name}', function($file_name = null)
 {
     $content = Storage::disk('Server_images')->get($file_name);
