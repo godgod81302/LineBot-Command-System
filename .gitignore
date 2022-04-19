@@ -15,3 +15,4 @@ yarn-error.log
 nohup.out
 /.env-origin
 selenium-server-standalone-4.0.0.jar
+composer.lock
