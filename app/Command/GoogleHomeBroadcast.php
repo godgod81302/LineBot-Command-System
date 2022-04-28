@@ -59,13 +59,32 @@ class GoogleHomeBroadcast extends BaseCommand{
 			'Content-Type: multipart/form-data',
 			'Authorization: Bearer QfJtDAozUvpIFe0hISzqVHXd92z5zlcazmanOtoQQoO'
 		);
-    $message = 'rrrr好爽';
+    $message = '';
+    if ( !empty($command) ){
+      //https://www.voicerss.org/ 使用這個語音tts服務
+      // $google_tts_url = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&client=tw-ob&q=".$command."&tl=zh-cn";
+      $google_tts_url = "https://api.voicerss.org/?key=9afcdd1a0e164e539f26b2c285a9282c&hl=zh-tw&c=MP3&src=".$command;
+      $tts_data = $this->down_mp3($google_tts_url);
+      $result = exec("py test.py");
+      return $command;
+    }
+    else{
+      return '廣播內容為空';
+    }
 
-
-
-		return $message;
 	}
 	protected function SessionFunction( $args=null ) : string {
 		
 	}
+  private function down_mp3($url){
+    $fileName = "test.mp3";
+    header ( "Content-Type:audio/mpeg");
+    header ( "accept-encoding: gzip, deflate, br");
+    header ( "accept-language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7");
+    header ( "cache-control: max-age=0");
+    $file = file_get_contents($url);
+    $fp = fopen($fileName, 'w');
+    fwrite($fp, $file);
+    fclose($fp);
+  }
 }

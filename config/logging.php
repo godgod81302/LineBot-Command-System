@@ -54,6 +54,20 @@ return [
 			'level' => 'debug',
 			'days' => 14,
 		],
+		'tg' => [
+			'driver' => 'daily',
+			'path' => storage_path('logs/tg.log'),
+			'level' => 'debug',
+			'days' => 14,
+		],
+		
+		'tg-api' => [
+			'driver' => 'daily',
+			'path' => storage_path('logs/tg-api.log'),
+			'level' => 'debug',
+			'days' => 14,
+		],
+
 
 		'webhook-reply' => [
 			'driver' => 'daily',

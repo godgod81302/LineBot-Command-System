@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\ListenTgMessage::class
     ];
 
     /**
@@ -28,8 +28,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('InformCustom')->everyMinute();
         // $schedule->command('CanUpRecheck')->everyMinute();
         // $schedule->command('ServerScheduleGenerate')->everyMinute();
-        $schedule->command('DeleteOldData')->dailyAt('06:55');
-        $schedule->command('ServerScheduleGenerate')->dailyAt('07:00');
+        // $schedule->command('DeleteOldData')->dailyAt('06:55');
+        // $schedule->command('ServerScheduleGenerate')->dailyAt('07:00');
+        $schedule->command('checkInWork')->everyMinute();
     }
 
     /**

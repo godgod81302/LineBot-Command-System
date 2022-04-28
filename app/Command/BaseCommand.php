@@ -208,7 +208,9 @@ abstract class BaseCommand implements Command{
 			}
 		}
 		$require_role = trim($require_role,',');
-
+		if ( count($this->command_data['access']) == 0 ){
+			$access = true;
+		}
 		if( !$access ){
 			return "您不具有[{$require_role}]的身分，指令權限不足";
 		}
