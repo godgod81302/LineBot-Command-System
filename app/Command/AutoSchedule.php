@@ -63,7 +63,7 @@ class AutoSchedule extends BaseCommand{
 		if( date("H")<1 ){
 			$calendar_search_time = date("Y-m-d",strtotime('-1 day'));
 		}
-		$calendar_datas = Calendar::where('date',date("Y-m-d"))->first();
+		$calendar_datas = Calendar::where('date',$calendar_search_time)->first();
 		if ( !$calendar_datas ){
 				$ch = curl_init();
 				curl_setopt($ch , CURLOPT_URL , "https://notify-api.line.me/api/notify");
@@ -102,15 +102,6 @@ class AutoSchedule extends BaseCommand{
 				$evening_end_time= date("Y-m-d 21:10:00");
 		}
 		else if( strtoupper($schedule_type) == 'J' ){
-				//還沒晚班測試過 自己小心
-				$ch = curl_init();
-				curl_setopt($ch , CURLOPT_URL , "https://notify-api.line.me/api/notify");
-				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, ["message"=>'跨日班目前懶得想 有遇到再說啦 自己處理',]);
-				$result = curl_exec($ch);
-				curl_close($ch);
-				exit;
 				$morning_start_time = date("Y-m-d 14:50:00");
 				$morning_end_time= date("Y-m-d 14:59:30");
 				$evening_start_time= date("Y-m-d 00:00:00");
@@ -134,13 +125,13 @@ class AutoSchedule extends BaseCommand{
 		}
 		else{
 				// echo 4;
-				$ch = curl_init();
-				curl_setopt($ch , CURLOPT_URL , "https://notify-api.line.me/api/notify");
-				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, ["message"=>'非打卡正式時段 打卡中斷',]);
-				$result = curl_exec($ch);
-				curl_close($ch);
+				// $ch = curl_init();
+				// curl_setopt($ch , CURLOPT_URL , "https://notify-api.line.me/api/notify");
+				// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				// curl_setopt($ch, CURLOPT_POST, true);
+				// curl_setopt($ch, CURLOPT_POSTFIELDS, ["message"=>'非打卡正式時段 打卡中斷',]);
+				// $result = curl_exec($ch);
+				// curl_close($ch);
 				exit;
 		}
 		
@@ -221,7 +212,7 @@ if ( (($now_timestamp>$morning_start_timestamp) && ($now_timestamp<$morning_end_
     $result = curl_exec($ch);
     curl_close($ch);
 		DB::table('flags')->insert([
-			'date' => date("Y-m-d"),
+			'date' => $calendar_search_time,
 			'time' => date("Y-m-d H:i:s"),
 		]);
     // $result2 = mysqli_query($link,"INSERT INTO flag (date,time)VALUES('".date("Y-m-d")."','".date("Y-m-d H:i:s")."')");

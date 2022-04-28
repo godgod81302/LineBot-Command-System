@@ -28,9 +28,12 @@ class ApiHelper{
 				'Authorization: Bearer '.$this->channel_access_token,
 			],
 			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_SSL_VERIFYHOST => false,
+			CURLOPT_SSL_VERIFYPEER=> false,
 		]);
 		$this->response = curl_exec($curl);
 		$this->statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
 		if( $this->statusCode!=200 ){
 			Log::channel('line-api')->error('code: '.$this->statusCode.'; response: '.$this->response.'; url: '.$url);
 		}
@@ -49,6 +52,8 @@ class ApiHelper{
 			],
 			CURLOPT_POSTFIELDS => $data,
 			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_SSL_VERIFYHOST => false,
+			CURLOPT_SSL_VERIFYPEER=> false,
 		]);
 		$this->response = curl_exec($curl);
 		$this->statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -151,6 +156,7 @@ class ApiHelper{
 	public function getGroupSummary( $group_id ){
 		$url = 'https://api.line.me/v2/bot/group/'.$group_id.'/summary';
 		$data_string = $this->callGet( $url );
+
 		$data = json_decode( $data_string );
 		return $data;
   }

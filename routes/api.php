@@ -18,6 +18,7 @@ Route::namespace('Api')->prefix('v1')->group(function(){
 	Route::post('/webhook','LineWebhookController@handler')->name('webhook.handler');
     Route::get('/loadschedule','ScheduleController@loadSchedule');
     Route::post('/postdata','ScheduleController@postData');
+    Route::post('/tgwebhook','TelegramWebhookController@handler')->name('tgwebhook.handler');
 });
 
 

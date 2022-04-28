@@ -1,1 +1,0 @@
-{"events":[{"type":"message","replyToken":"c85ac3e452bd4a519f6971c20a72dec4","source":{"userId":"U178cedda74a9536c3ce570690e6311f3","type":"user"},"timestamp":1600338054939,"mode":"active","message":{"type":"text","id":"12695372114912","text":"ewqe"}}],"destination":"Ub34de2a04c55be9b7fcb068eecdeb02f"}
