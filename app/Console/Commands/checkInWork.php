@@ -41,17 +41,17 @@ class checkInWork extends Command
  
     public function handle()
     {
-      $headers = array(
-        'Content-Type: multipart/form-data',
-        'Authorization: Bearer QfJtDAozUvpIFe0hISzqVHXd92z5zlcazmanOtoQQoO'
-      );
-      $ch = curl_init();
-			curl_setopt($ch , CURLOPT_URL , "https://notify-api.line.me/api/notify");
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, ["message"=>'測試排程',]);
-			$result = curl_exec($ch);
-			curl_close($ch);
+      // $headers = array(
+      //   'Content-Type: multipart/form-data',
+      //   'Authorization: Bearer QfJtDAozUvpIFe0hISzqVHXd92z5zlcazmanOtoQQoO'
+      // );
+      // $ch = curl_init();
+			// curl_setopt($ch , CURLOPT_URL , "https://notify-api.line.me/api/notify");
+			// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			// curl_setopt($ch, CURLOPT_POST, true);
+			// curl_setopt($ch, CURLOPT_POSTFIELDS, ["message"=>'測試排程',]);
+			// $result = curl_exec($ch);
+			// curl_close($ch);
     }
     
 }
