@@ -51,7 +51,7 @@ class checkInWork extends Command
       }
       $headers = array(
         'Content-Type: multipart/form-data',
-        'Authorization: Bearer QfJtDAozUvpIFe0hISzqVHXd92z5zlcazmanOtoQQoO'
+        'Authorization: Bearer {Line notify api id}'
       );
       $calendar_search_time = date("Y-m-d");
       if( date("H")<1 ){
@@ -166,10 +166,10 @@ class checkInWork extends Command
   
       // write 'PHP' in the search box
       $driver->findElement(WebDriverBy::id('id')) // find search input element
-          ->sendKeys('20211203'); // fill the search box
+          ->sendKeys('{帳號}'); // fill the search box
       // submit the whole form
       $driver->findElement(WebDriverBy::id('pw'))
-      ->sendKeys('E124819640')
+      ->sendKeys('{密碼}')
       ->submit();
   
       $driver->findElement(
