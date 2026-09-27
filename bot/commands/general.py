@@ -18,7 +18,7 @@ class HelpCommand(Command):
                 lines.append(f"{cmd.usage}\n　{cmd.description}")
         lines.append("")
         lines.append("💡 上傳個人照片後，就能生成有自己臉孔的長輩圖與改圖。")
-        await line_api.push_text(ctx.client, ctx.reply_target, "\n".join(lines))
+        await line_api.send_text(ctx.client, ctx.reply_target, ctx.reply_token, "\n".join(lines))
 
 
 @register
@@ -38,7 +38,7 @@ class StylesCommand(Command):
             lines.append("、".join(names))
             lines.append("")
         lines.append("每次生成隨機挑一種，近期用過的不會重複。")
-        await line_api.push_text(ctx.client, ctx.reply_target, "\n".join(lines))
+        await line_api.send_text(ctx.client, ctx.reply_target, ctx.reply_token, "\n".join(lines))
 
 
 @register
@@ -50,8 +50,8 @@ class SubscribeCommand(Command):
     async def run(self, ctx: Context) -> None:
         from .. import config
         storage.set_subscribed(ctx.user_id, True)
-        await line_api.push_text(
-            ctx.client, ctx.reply_target,
+        await line_api.send_text(
+            ctx.client, ctx.reply_target, ctx.reply_token,
             f"✅ 訂閱成功！每天 {config.DAILY_PUSH_TIME} 會自動送上一張長輩圖。\n"
             "想換口味隨時可打「#長輩圖」手動生成；取消請打「#取消訂閱」。",
         )
@@ -65,4 +65,4 @@ class UnsubscribeCommand(Command):
 
     async def run(self, ctx: Context) -> None:
         storage.set_subscribed(ctx.user_id, False)
-        await line_api.push_text(ctx.client, ctx.reply_target, "已取消訂閱，不會再每日推播。隨時打「#訂閱」可恢復。")
+        await line_api.send_text(ctx.client, ctx.reply_target, ctx.reply_token, "已取消訂閱，不會再每日推播。隨時打「#訂閱」可恢復。")

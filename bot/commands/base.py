@@ -25,10 +25,11 @@ def register(cls: type["Command"]) -> type["Command"]:
 class Context:
     client: "httpx.AsyncClient"
     user_id: str            # LINE user id
-    reply_target: str       # push 目標（私聊=user id，群組=group id）
+    reply_target: str       # push fallback 目標（私聊=user id，群組=group id）
     is_group: bool
     text: str               # 完整訊息文字（含 # 前綴）
     args: str               # 去掉觸發詞後的內容
+    reply_token: str | None = None  # 本次事件的 replyToken（只能用一次，優先使用）
     extras: dict = field(default_factory=dict)
 
 

@@ -1,4 +1,4 @@
-"""生成流程共用：存檔、託管 URL、任務包裝（收到→生成中→推播結果）。"""
+"""生成流程共用：存檔、託管 URL、任務包裝（loading 動畫→生成→一次回覆結果）。"""
 from __future__ import annotations
 
 import uuid
@@ -24,15 +24,19 @@ async def run_generation(
     prompt: str,
     produce: Callable[[], Awaitable[list[bytes]]],
     label: str | None = None,
-    ack: str = "🎨 收到，生成中，大約需要 1～2 分鐘，好了會馬上傳給你…",
 ) -> None:
-    await line_api.push_text(ctx.client, ctx.reply_target, ack)
+    """生成圖片並以一次 reply 回覆結果（圖片+說明打包，reply 失敗才 fallback push）。
+
+    replyToken 只能回一次，所以不發「生成中」訊息；一對一改用免費的 loading 動畫。
+    """
+    if not ctx.is_group:
+        await line_api.start_loading(ctx.client, ctx.user_id)
     try:
         images = await produce()
     except Exception as exc:
         storage.log_generation(ctx.user_id, kind, prompt, None, "failed", str(exc)[:500])
-        await line_api.push_text(
-            ctx.client, ctx.reply_target,
+        await line_api.send_text(
+            ctx.client, ctx.reply_target, ctx.reply_token,
             "😥 生成失敗了，可能是上游忙碌或內容被擋下。\n"
             "請稍後再試一次，或換個說法。\n"
             f"（技術訊息：{str(exc)[:200]}）",
@@ -41,6 +45,7 @@ async def run_generation(
 
     name = save_media(images[0])
     storage.log_generation(ctx.user_id, kind, prompt, name, "succeeded")
-    await line_api.push_image(ctx.client, ctx.reply_target, public_media_url(name))
+    messages = [line_api.image_msg(public_media_url(name))]
     if label:
-        await line_api.push_text(ctx.client, ctx.reply_target, label)
+        messages.append(line_api.text_msg(label))
+    await line_api.send_messages(ctx.client, ctx.reply_target, ctx.reply_token, messages)
