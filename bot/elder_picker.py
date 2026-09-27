@@ -85,7 +85,7 @@ def render_custom_prompt(theme: str, with_face: bool, greeting_text: str | None 
                          now: datetime | None = None) -> tuple[str, str]:
     """自訂主題（#長輩圖 中秋節 [圖上文字]）→ 回傳 (prompt, 顯示名)。
 
-    greeting_text：指定圖片上的問候字（建議 ≤4 字，太多字 AI 容易寫錯）；
+    greeting_text：指定圖片上的問候字（上限 8 字，太多會放不下）；
     沒給就依台灣時段自動挑問候語。
     """
     lib = load_library()

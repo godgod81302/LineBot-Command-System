@@ -121,13 +121,13 @@ class ElderCommand(Command):
         theme, custom_text = raw, None
         parts = raw.split()
         if len(parts) >= 2:
-            if len(parts[-1]) <= 4:
+            if len(parts[-1]) <= 8:
                 custom_text = parts[-1]
                 theme = " ".join(parts[:-1])
             else:
                 await line_api.send_text(
                     ctx.client, ctx.reply_target, ctx.reply_token,
-                    "圖片上的問候字最多 4 個字喔（太多字 AI 容易寫錯）！\n"
+                    "圖片上的問候字最多 8 個字喔（太多會放不下）！\n"
                     "例如：#長輩圖 中秋節 花好月圓",
                 )
                 return
