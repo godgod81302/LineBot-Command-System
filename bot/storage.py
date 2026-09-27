@@ -53,6 +53,7 @@ CREATE INDEX IF NOT EXISTS idx_elder_history_user ON elder_style_history(line_us
 
 def init_db() -> None:
     with _connect() as conn:
+        conn.execute("PRAGMA journal_mode=WAL")
         conn.executescript(_SCHEMA)
 
 
