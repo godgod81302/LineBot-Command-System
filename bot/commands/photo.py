@@ -110,12 +110,28 @@ class EditCommand(Command):
 @register
 class ElderCommand(Command):
     names = ("長輩圖", "早安圖", "elder")
-    usage = "#長輩圖（可接主題，例：#長輩圖 中秋節；加「無臉」變純風景）"
+    usage = "#長輩圖（可接主題＋圖上文字，例：#長輩圖 中秋節 花好月圓；加「無臉」變純風景）"
     description = "生成一張有創意的長輩圖，每次都不同"
 
     async def run(self, ctx: Context) -> None:
         with_face = "無臉" not in ctx.args
-        theme = ctx.args.replace("無臉", "").strip()
+        raw = ctx.args.replace("無臉", "").strip()
+
+        # 語法：#長輩圖 主題 [圖上文字(≤4字)]
+        theme, custom_text = raw, None
+        parts = raw.split()
+        if len(parts) >= 2:
+            if len(parts[-1]) <= 4:
+                custom_text = parts[-1]
+                theme = " ".join(parts[:-1])
+            else:
+                await line_api.send_text(
+                    ctx.client, ctx.reply_target, ctx.reply_token,
+                    "圖片上的問候字最多 4 個字喔（太多字 AI 容易寫錯）！\n"
+                    "例如：#長輩圖 中秋節 花好月圓",
+                )
+                return
+
         photos = storage.get_user_photos(ctx.user_id) if with_face else []
 
         if with_face and not photos:
@@ -129,7 +145,7 @@ class ElderCommand(Command):
             return
 
         if theme:
-            prompt, label = elder_picker.render_custom_prompt(theme, with_face)
+            prompt, label = elder_picker.render_custom_prompt(theme, with_face, greeting_text=custom_text)
             storage.record_elder_style(ctx.user_id, f"custom:{theme}")
         else:
             style = elder_picker.pick_style(ctx.user_id, with_face)

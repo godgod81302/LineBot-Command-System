@@ -2,7 +2,11 @@
 from __future__ import annotations
 
 import os
+from datetime import timedelta, timezone
 from pathlib import Path
+
+# 業務時區固定台灣（VPS 主機是歐洲時區，問候語/每日推播都要以台灣時間為準）
+TZ = timezone(timedelta(hours=8), "Asia/Taipei")
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = Path(os.getenv("LINEBOT_DATA_DIR", BASE_DIR / "data"))
@@ -24,7 +28,7 @@ PUBLIC_BASE_URL = os.getenv("LINEBOT_PUBLIC_BASE_URL", "").rstrip("/")
 # 生成逾時（秒），ChatGPT 生圖高峰期可能很久
 IMAGE_TIMEOUT_SECS = float(os.getenv("LINEBOT_IMAGE_TIMEOUT_SECS", "300"))
 
-# 每日訂閱推送時間（HH:MM，伺服器本地時間）
+# 每日訂閱推送時間（HH:MM，台灣時間）
 DAILY_PUSH_TIME = os.getenv("LINEBOT_DAILY_PUSH_TIME", "07:00")
 
 # 長輩圖風格去重：同用戶最近 N 次用過的風格不再抽

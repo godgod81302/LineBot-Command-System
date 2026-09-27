@@ -46,13 +46,13 @@ def greeting_for(hour: int, lib: dict) -> str:
         period = "afternoon"
     else:
         period = "night"
-    variants = lib.get("greetings", {}).get(period) or ["早安"]
+    variants = lib.get("greetings", {}).get(period) or ["早安您好"]
     return random.choice(variants)
 
 
 def pick_style(line_user_id: str, with_face: bool, now: datetime | None = None) -> dict:
     lib = load_library()
-    now = now or datetime.now()
+    now = now or datetime.now(config.TZ)
     boost = float(lib.get("seasonal_boost", 3))
 
     candidates = []
@@ -81,11 +81,16 @@ def pick_style(line_user_id: str, with_face: bool, now: datetime | None = None) 
     return chosen
 
 
-def render_custom_prompt(theme: str, with_face: bool, now: datetime | None = None) -> tuple[str, str]:
-    """自訂主題（#長輩圖 中秋節）→ 回傳 (prompt, 顯示名)。沿用風格庫的問候/祝福規格。"""
+def render_custom_prompt(theme: str, with_face: bool, greeting_text: str | None = None,
+                         now: datetime | None = None) -> tuple[str, str]:
+    """自訂主題（#長輩圖 中秋節 [圖上文字]）→ 回傳 (prompt, 顯示名)。
+
+    greeting_text：指定圖片上的問候字（建議 ≤4 字，太多字 AI 容易寫錯）；
+    沒給就依台灣時段自動挑問候語。
+    """
     lib = load_library()
-    now = now or datetime.now()
-    greeting = greeting_for(now.hour, lib)
+    now = now or datetime.now(config.TZ)
+    greeting = greeting_text or greeting_for(now.hour, lib)
     blessing = random.choice(lib.get("blessings", ["平安喜樂"]))
     theme = theme.strip()[:60]
 
@@ -109,7 +114,7 @@ def render_custom_prompt(theme: str, with_face: bool, now: datetime | None = Non
 def render_prompt(style: dict, with_face: bool, now: datetime | None = None) -> tuple[str, str]:
     """回傳 (prompt, 風格顯示名)。"""
     lib = load_library()
-    now = now or datetime.now()
+    now = now or datetime.now(config.TZ)
     greeting = greeting_for(now.hour, lib)
     blessing = random.choice(lib.get("blessings", ["平安喜樂"]))
 

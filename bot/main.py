@@ -214,7 +214,7 @@ async def _daily_push_loop() -> None:
     last_run_date = None
     while True:
         await asyncio.sleep(30)
-        now = datetime.now()
+        now = datetime.now(config.TZ)
         hhmm = now.strftime("%H:%M")
         today = now.date()
         if hhmm != config.DAILY_PUSH_TIME or last_run_date == today:
