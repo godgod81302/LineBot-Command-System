@@ -96,8 +96,8 @@ def render_custom_prompt(theme: str, with_face: bool, greeting_text: str | None 
 
     if with_face:
         prompt = (
-            "請完整保留參考照片中人物的五官、臉型與神韻，讓人一眼就認出是同一個人。"
-            f"以「{theme}」為主題為這位人物設計造型與場景：服裝、妝髮、背景、色調都要呼應主題，"
+            FACE_TUNE
+            + f"以「{theme}」為主題為這位人物設計造型與場景：服裝、妝髮、背景、色調都要呼應主題，"
             "畫面精緻、溫暖喜氣、適合長輩問候。"
             f"畫面上方以配合主題的美術字體寫著大大的「{greeting}」，下方以較小字體寫著「{blessing}」。"
         )
@@ -111,6 +111,15 @@ def render_custom_prompt(theme: str, with_face: bool, greeting_text: str | None 
     return prompt, label
 
 
+# 有臉風格通用規則：年輕化＋姿勢依風格重設（注入所有 face prompt 前面）
+FACE_TUNE = (
+    "請將人物的容貌優化為更年輕、更好看的版本（約年輕二十歲、膚質緊緻、氣色紅潤有精神），"
+    "但仍要完整保留五官神韻、讓人一眼認出是本人。"
+    "人物的姿勢、表情與構圖請依照主題風格重新設計，自然融入場景，"
+    "不要受限於參考照片原本的姿勢、穿著與背景。"
+)
+
+
 def render_prompt(style: dict, with_face: bool, now: datetime | None = None) -> tuple[str, str]:
     """回傳 (prompt, 風格顯示名)。"""
     lib = load_library()
@@ -122,6 +131,8 @@ def render_prompt(style: dict, with_face: bool, now: datetime | None = None) -> 
     if not template:
         template = style.get("scene_prompt", "")
     prompt = template.replace("{greeting}", greeting).replace("{blessing}", blessing)
+    if with_face:
+        prompt = FACE_TUNE + prompt
 
     label = f"{style.get('category', '')}・{style.get('name', '')}（{greeting}）"
     return prompt, label
