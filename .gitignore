@@ -39,3 +39,9 @@ public/session.madeline.ipcState.php.lock
 public/session.madeline.lightState.php
 public/session.madeline.lightState.php.lock
 public/composer.json
+
+# new bot
+bot/data/
+bot/__pycache__/
+bot/**/__pycache__/
+bot/.env

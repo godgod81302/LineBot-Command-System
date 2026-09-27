@@ -1,0 +1,436 @@
+{
+  "seasonal_boost": 3,
+  "greetings": {
+    "morning": ["早安", "早安您好", "晨安吉祥", "美好的一天", "晨起平安"],
+    "noon": ["午安", "午安愉快", "午間平安"],
+    "afternoon": ["日安", "下午好", "午後悠閒"],
+    "night": ["晚安", "晚安好夢", "祝君好眠", "夜夜平安"]
+  },
+  "blessings": [
+    "心想事成", "平安喜樂", "福氣滿滿", "健康長壽", "萬事如意",
+    "笑口常開", "闔家平安", "花開富貴", "歲歲平安", "好運連連",
+    "幸福美滿", "吉祥如意", "財源廣進", "青春常駐", "日日是好日"
+  ],
+  "styles": [
+    {
+      "id": "lotus_dew",
+      "name": "蓮花晨露",
+      "category": "自然祝福",
+      "weight": 10,
+      "supports_face": false,
+      "scene_prompt": "一朵盛開的粉紅色蓮花佔據畫面中央，花瓣上帶著晶瑩晨露，大光圈淺景深，背景是朦朧的綠色荷塘與金色晨光，畫面明亮溫暖、仙氣飄飄。圖片上方以優雅的金色書法字體寫著大大的「{greeting}」，下方以較小的紅色楷書寫著「{blessing}」。高飽和、溫馨、適合長輩問候的風格。"
+    },
+    {
+      "id": "peony_rich",
+      "name": "牡丹富貴",
+      "category": "自然祝福",
+      "weight": 8,
+      "supports_face": false,
+      "scene_prompt": "盛開的紅色與粉色牡丹花叢，富麗堂皇，背景點綴金色祥雲與柔和晨光，整體喜氣華貴。圖片上方以金色毛筆書法寫著「{greeting}」，下方寫著「{blessing}」，傳統國畫與寫實攝影結合的風格，鮮豔喜氣。"
+    },
+    {
+      "id": "pine_crane",
+      "name": "松鶴延年",
+      "category": "自然祝福",
+      "weight": 7,
+      "supports_face": false,
+      "scene_prompt": "蒼勁的松樹與優雅的丹頂鶴，背景是雲霧繚繞的山巒與旭日東升，傳統中國工筆畫風格，色彩溫潤。畫面上方以蒼勁書法寫著「{greeting}」，下方寫著「{blessing}」，典雅莊重，充滿祝壽氛圍。"
+    },
+    {
+      "id": "sunrise_sea_clouds",
+      "name": "日出雲海",
+      "category": "自然祝福",
+      "weight": 7,
+      "supports_face": false,
+      "scene_prompt": "高山之巔俯瞰壯麗雲海，金色日出穿透雲層灑下萬丈光芒，天空漸層橘紅紫色，氣勢磅礴又溫暖。圖片上方以金色大書法字寫著「{greeting}」，下方紅色字寫著「{blessing}」。"
+    },
+    {
+      "id": "koi_pond",
+      "name": "錦鯉戲水",
+      "category": "自然祝福",
+      "weight": 6,
+      "supports_face": false,
+      "scene_prompt": "清澈的池塘中幾尾色彩鮮豔的錦鯉悠游，紅白金三色，水面漂浮著粉色荷花與綠色荷葉，陽光灑落波光粼粼。上方金色書法「{greeting}」，下方「{blessing}」，清新雅致。"
+    },
+    {
+      "id": "orchid_elegant",
+      "name": "幽蘭清香",
+      "category": "自然祝福",
+      "weight": 6,
+      "supports_face": false,
+      "scene_prompt": "一盆優雅盛開的蘭花，淡紫色與白色花瓣，搭配青瓷花盆與竹簾背景，晨光柔和，東方禪意美學。上方以秀麗楷書寫著「{greeting}」，下方寫著「{blessing}」，清新脫俗。"
+    },
+    {
+      "id": "sakura_spring",
+      "name": "櫻花紛飛",
+      "category": "自然祝福",
+      "weight": 6,
+      "supports_face": false,
+      "scene_prompt": "滿開的粉紅櫻花樹下，花瓣隨風紛飛，藍天白雲，一條小徑延伸向遠方，夢幻唯美。上方以浪漫字體寫著「{greeting}」，搭配「{blessing}」，春日浪漫風格。"
+    },
+    {
+      "id": "maple_autumn",
+      "name": "楓紅層林",
+      "category": "自然祝福",
+      "weight": 5,
+      "supports_face": false,
+      "scene_prompt": "層層疊疊的火紅楓葉林，金黃與橘紅交織，午後陽光穿過葉隙灑落，地面上鋪著落葉，溫暖詩意。上方書法字「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "terrace_morning",
+      "name": "梯田晨光",
+      "category": "自然祝福",
+      "weight": 5,
+      "supports_face": false,
+      "scene_prompt": "清晨陽光照耀下的翠綠梯田，水面如鏡反射金色天光，遠山含黛，炊煙裊裊，田園詩般的寧靜。上方「{greeting}」，下方「{blessing}」，樸實溫暖。"
+    },
+    {
+      "id": "lavender_field",
+      "name": "薰衣草花田",
+      "category": "自然祝福",
+      "weight": 5,
+      "supports_face": false,
+      "scene_prompt": "一望無際的紫色薰衣草花田延伸到地平線，夕陽金色餘暉，微風吹拂掀起紫色波浪，浪漫溫柔。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "osmanthus_gold",
+      "name": "金桂飄香",
+      "category": "自然祝福",
+      "weight": 5,
+      "supports_face": false,
+      "scene_prompt": "金黃色桂花枝頭特寫，細密花朵如繁星，背景虛化成溫暖光斑，空氣中彷彿聞得到甜香。上方「{greeting}」，下方「{blessing}」，秋日甜香氛圍。"
+    },
+    {
+      "id": "lantern_sky",
+      "name": "天燈祈福",
+      "category": "吉祥寓意",
+      "weight": 8,
+      "supports_face": false,
+      "scene_prompt": "夜空中數十盞橘紅色天燈緩緩升起，如同星光點點，十分寮靜的山城夜色，溫暖感人。天燈上隱約可見祈福字句。上方金色字「{greeting}」，下方「{blessing}」，祈福許願氛圍。"
+    },
+    {
+      "id": "temple_bless",
+      "name": "廟宇祈福",
+      "category": "吉祥寓意",
+      "weight": 7,
+      "supports_face": false,
+      "scene_prompt": "莊嚴的媽祖廟埕，紅色燈籠高掛，香煙裊裊，金色陽光灑在雕樑畫棟上，信徒雙手合十祈福，虔誠溫暖。上方「{greeting}」，下方「{blessing}」，台灣廟宇文化風。"
+    },
+    {
+      "id": "gold_ingot",
+      "name": "招財進寶",
+      "category": "吉祥寓意",
+      "weight": 6,
+      "supports_face": false,
+      "scene_prompt": "堆積如山的金元寶與金幣，紅色絲綢襯底，金色光芒四射，旁邊點綴紅色中國結與招財貓，喜氣洋洋。上方「{greeting}」，下方大字「{blessing}」，招財風格。"
+    },
+    {
+      "id": "lucky_charm",
+      "name": "平安福袋",
+      "category": "吉祥寓意",
+      "weight": 6,
+      "supports_face": false,
+      "scene_prompt": "精緻的紅色平安符與刺繡福袋掛在廟宇紅繩上，背景虛化的燈籠光斑，溫暖的紅金配色，充滿祝福感。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "dragon_phoenix",
+      "name": "龍鳳呈祥",
+      "category": "吉祥寓意",
+      "weight": 5,
+      "supports_face": false,
+      "scene_prompt": "金龍與彩鳳在祥雲間翱翔，傳統刺繡風格，紅金配色華麗莊重，細節精緻。上方「{greeting}」，下方「{blessing}」，帝王級的吉祥氣勢。"
+    },
+    {
+      "id": "magpie_plum",
+      "name": "喜上眉梢",
+      "category": "吉祥寓意",
+      "weight": 6,
+      "supports_face": false,
+      "scene_prompt": "兩隻喜鵲站在盛開的紅梅枝頭，背景是淡雅的水墨暈染與飄雪，傳統花鳥畫風格，喜氣靈動。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "qipao_republic",
+      "name": "民國旗袍",
+      "category": "復古風華",
+      "weight": 10,
+      "supports_face": true,
+      "face_prompt": "請完整保留參考照片中人物的五官、臉型與神韻，讓人一眼就認出是同一個人。為這位人物換上民國時期的精緻旗袍（或長衫），妝髮復古優雅，背景是1930年代上海十里洋場的街景或老式洋房客廳，暖黃燈光，懷舊電影質感，人物看起來年輕十歲、風華絕代。畫面上方以復古美術字寫著「{greeting}」。",
+      "scene_prompt": "一位穿著民國時期精緻旗袍的優雅女士（或長衫紳士），站在1930年代上海外灘背景前，暖黃懷舊燈光，老電影海報質感，風華絕代。上方復古美術字「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "shanghai_suit",
+      "name": "上海灘風雲",
+      "category": "復古風華",
+      "weight": 8,
+      "supports_face": true,
+      "face_prompt": "請完整保留參考照片中人物的五官特徵，讓人認得出是同一個人。為人物換上1930年代上海灘紳士西裝三件套（或名媛洋裝），戴上紳士帽，背景是黃浦江畔夜景與霓虹燈，黑色電影般的戲劇光，人物神采奕奕、年輕有型。上方以金色裝飾藝術字體寫著「{greeting}」。",
+      "scene_prompt": "1930年代上海灘風格的紳士與名媛站在黃浦江畔，西裝與洋裝，霓虹燈夜景，Art Deco 裝飾藝術風格海報質感。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "romance_novel",
+      "name": "玉女小說封面",
+      "category": "復古風華",
+      "weight": 9,
+      "supports_face": true,
+      "face_prompt": "請完整保留參考照片中人物的五官與神韻。把人物畫成1980年代台灣瓊瑤言情小說封面風格：柔美的手繪插畫質感，人物穿著典雅洋裝或襯衫，長髮飄逸（或瀟灑深情），背景是夢幻的花園與夕陽，畫面朦朧浪漫，人物年輕美麗。上方以浪漫花體字寫著「{greeting}」，整體就是一本言情小說封面。",
+      "scene_prompt": "1980年代台灣瓊瑤言情小說封面風格插畫：一對俊男美女在夕陽花園中深情對望，柔美手繪質感，朦朧浪漫。上方浪漫花體字「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "opera_star",
+      "name": "歌仔戲名角",
+      "category": "復古風華",
+      "weight": 7,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵，讓人認得出來。為人物化上歌仔戲的精緻戲曲妝容，穿上華麗的戲曲服裝與頭飾，水袖輕揚，站在傳統戲台上，紅色布幕與金色雕飾背景，燈光璀璨，名角風範。上方以戲曲海報字體寫著「{greeting}」。",
+      "scene_prompt": "歌仔戲舞台上，華麗戲曲服裝的名角水袖輕揚，精緻頭飾與妝容，紅金配色的傳統戲台，燈光璀璨。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "old_movie_poster",
+      "name": "老電影海報",
+      "category": "復古風華",
+      "weight": 7,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官，讓人一眼認出。把人物做成1960年代台語老電影海報的主角：復古手繪海報風格，人物穿著復古洋裝或西裝，表情深情，背景是懷舊的城市街景，海報上方以復古電影標題字寫著「{greeting}」，充滿懷舊戲院氛圍。",
+      "scene_prompt": "1960年代台語老電影海報風格：復古手繪質感，男女主角深情相依，懷舊街景背景，復古電影標題字「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "tang_suit_tea",
+      "name": "唐裝茶韻",
+      "category": "復古風華",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。為人物換上典雅的唐裝，坐在古色古香的茶館中泡茶，背景是中式窗櫺與盆栽，茶香裊裊，氣質沉穩儒雅。上方以書法字寫著「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "古色古香的中式茶館，一位唐裝長者正在專注泡茶，茶煙裊裊，窗外竹影搖曳，禪意十足。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "graduation_youth",
+      "name": "青春學士照",
+      "category": "青春回憶",
+      "weight": 9,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵，但讓人物看起來回到二十歲的青春年華，皮膚緊緻、眼神明亮。為人物穿上学士服、戴学士帽，站在綠意盎然的大學校園中，陽光燦爛，笑容燦爛，青春無敵。上方以活力字體寫著「{greeting}」，下方寫著「青春永駐・{blessing}」。",
+      "scene_prompt": "陽光燦爛的大學校園，一群穿學士服的年輕人開心拋起學士帽，青春洋溢。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "ballroom_dance",
+      "name": "舞廳國標",
+      "category": "青春回憶",
+      "weight": 7,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官，讓人物年輕二十歲。為人物換上華麗的國標舞禮服（亮片舞衣或燕尾服），在水晶吊燈下的舞廳中翩翩起舞，舞姿優雅自信，燈光夢幻，重返青春舞會時光。上方寫著「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "水晶吊燈下的華麗舞廳，一對舞者穿著亮片舞衣與燕尾服跳國標舞，舞姿優雅，燈光夢幻。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "ice_parlor",
+      "name": "冰果室時光",
+      "category": "青春回憶",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵，讓人物看起來年輕有活力。場景是1970年代台灣復古冰果室：人物坐在马赛克磁磚桌前，面前一碗色彩繽紛的剉冰，穿著復古花襯衫或洋裝，笑容開懷，吊扇緩緩轉動，滿滿懷舊夏日風情。上方「{greeting}」。",
+      "scene_prompt": "1970年代台灣復古冰果室：马赛克磁磚、吊扇、色彩繽紛的剉冰與汽水，夏日懷舊風情。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "bicycle_trip",
+      "name": "單車郊遊",
+      "category": "青春回憶",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官，讓人物年輕有活力、笑容燦爛。人物騎著復古腳踏車在綠色稻田間的鄉間小路，穿著清爽的夏日服裝，車籃裡放著鮮花，微風吹拂，自由愜意。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "綠油油稻田間的鄉間小路，一輛復古腳踏車靠在木柵欄旁，車籃裡插滿鮮花，微風與陽光，田園愜意。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "sailor_moon",
+      "name": "美少女戰士",
+      "category": "動漫夢幻",
+      "weight": 8,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵與神韻，把人物變成1990年代經典日本動畫美少女戰士風格的角色：閃亮大眼睛、華麗的水手服戰鬥裝、夢幻的變身背景（月亮、星光、緞帶飛舞），日系手繪動畫質感，可愛又華麗。上方以閃亮特效字寫著「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "1990年代美少女戰士動畫風格：夢幻月亮背景、星光閃爍、緞帶飛舞、水手服角色剪影，閃亮日系動畫質感。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "magical_girl",
+      "name": "魔法少女",
+      "category": "動漫夢幻",
+      "weight": 7,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官神韻，把人物變成可愛的魔法少女（或魔法師）動畫角色：蓬蓬裙魔法裝、手持魔法棒、周圍環繞星星與愛心特效，背景是夢幻雲端城堡，粉嫩配色，日系可愛動畫風。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "夢幻雲端上的魔法城堡，彩虹、星星、愛心特效環繞，粉嫩日系可愛動畫風格。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "ghibli_meadow",
+      "name": "吉卜力田園",
+      "category": "動漫夢幻",
+      "weight": 7,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵，把人物畫成吉卜力動畫風格的角色：溫暖手繪質感，人物站在綠色草原上，藍天白雲如宮崎駿電影場景，微風吹拂頭髮與衣角，溫柔治癒。上方以手繪風字體寫著「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "吉卜力動畫風格的綠色草原與巨大積雨雲，微風吹拂，溫暖手繪質感，治癒人心。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "disney_princess",
+      "name": "公主圓夢",
+      "category": "動漫夢幻",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官神韻，把人物變成迪士尼動畫電影中的公主（或王子）：精緻的3D動畫質感，華麗的宮廷禮服，背景是童話城堡與玫瑰園，星光閃閃，優雅夢幻。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "迪士尼動畫風格的童話城堡與玫瑰園，星光閃閃，華麗夢幻的3D動畫質感。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "sakura_school",
+      "name": "櫻花學園",
+      "category": "動漫夢幻",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官，讓人物年輕化，穿上日系學園制服，站在櫻花盛開的校門口，花瓣飄落，日系青春動畫風格，清新明亮，重返十七歲。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "櫻花盛開的日式學園校門口，花瓣飄落，青春動畫風格，清新明亮。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "tea_master",
+      "name": "茶道心境",
+      "category": "生活美學",
+      "weight": 7,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物穿著素雅的茶人服，在日式或中式茶室中專注點茶，茶具精緻，光影靜謐，禪意盎然，氣質出眾。上方以枯筆書法寫著「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "靜謐的茶室，精緻茶具與裊裊茶煙，窗外綠竹搖曳，禪意東方美學。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "calligraphy",
+      "name": "揮毫書法",
+      "category": "生活美學",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物穿著中式長衫，在書房中揮毫寫書法，宣紙上是蒼勁的墨字，筆墨紙硯俱全，窗外梅竹相伴，文人氣質儒雅。畫面中的書法字寫著「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "文人書房，宣紙上蒼勁有力的書法字「{greeting}」，筆墨紙硯與梅竹盆栽，墨香四溢。下方「{blessing}」。"
+    },
+    {
+      "id": "garden_greenhouse",
+      "name": "花房園藝",
+      "category": "生活美學",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物穿著棉麻圍裙，在陽光玻璃花房中照料盛開的花草，手持小剪刀與灑水壺，笑容滿足，綠意與花香環繞，歲月靜好。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "陽光灑落的玻璃花房，各色花草盛開，園藝工具與灑水壺，綠意盎然，歲月靜好。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "taichi_morning",
+      "name": "太極晨曦",
+      "category": "生活美學",
+      "weight": 6,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物穿著白色太極服，在清晨的公園湖畔打太極拳，晨霧繚繞，動作行雲流水，仙風道骨，神清氣爽。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "清晨湖畔，白鷺鷥飛過，晨霧中隱約可見打太極的身影，寧靜養生氛圍。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "fishing_lake",
+      "name": "湖畔垂釣",
+      "category": "生活美學",
+      "weight": 5,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物戴著斗笠在寧靜的湖畔垂釣，夕陽餘暉灑在湖面，魚簍裡收穫滿滿，表情悠然自得，閒雲野鶴。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "夕陽下的寧靜湖泊，一葉扁舟與釣竿，波光粼粼，閒雲野鶴的悠然。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "baking_kitchen",
+      "name": "幸福烘焙",
+      "category": "生活美學",
+      "weight": 5,
+      "supports_face": true,
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物在溫馨的鄉村風廚房裡烘焙，圍裙上沾著麵粉，手上捧著剛出爐的麵包或蛋糕，笑容溫暖，烤箱透出暖光，幸福滿溢。上方「{greeting}」，下方「{blessing}」。",
+      "scene_prompt": "溫馨鄉村風廚房，剛出爐的麵包與蛋糕擺滿木桌，烤箱透出暖光，麵粉在陽光中飛舞。上方「{greeting}」，下方「{blessing}」。"
+    },
+    {
+      "id": "cny_red",
+      "name": "新春賀歲",
+      "category": "節慶限定",
+      "weight": 10,
+      "supports_face": true,
+      "season_window": ["01-15", "02-28"],
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物穿著喜氣的紅色唐裝或旗袍，手拿紅包與春聯，背景是紅燈籠與鞭炮彩帶，金元寶點綴，年味十足，笑容滿面賀新春。上方以燙金大字寫著「新春快樂」，下方「{blessing}」。",
+      "scene_prompt": "大紅燈籠高高掛，春聯、鞭炮、金元寶與梅花，喜氣洋洋的新春場景，燙金大字「新春快樂」，下方「{blessing}」。"
+    },
+    {
+      "id": "lantern_festival",
+      "name": "元宵花燈",
+      "category": "節慶限定",
+      "weight": 9,
+      "supports_face": false,
+      "season_window": ["02-05", "03-05"],
+      "scene_prompt": "元宵節燈會，各式各樣的傳統花燈（兔子燈、龍燈、蓮花燈）在夜空中爭奇鬥豔，人潮提著燈籠，熱鬧溫馨。上方「元宵佳節」，下方「{blessing}」。"
+    },
+    {
+      "id": "dragon_boat",
+      "name": "端午安康",
+      "category": "節慶限定",
+      "weight": 9,
+      "supports_face": false,
+      "season_window": ["05-25", "06-15"],
+      "scene_prompt": "端午節龍舟競渡，鼓聲激昂，粽子與艾草香包點綴畫面，碧波蕩漾，熱鬧又應景。上方「端午安康」，下方「{blessing}」。"
+    },
+    {
+      "id": "mothers_day",
+      "name": "母親節康乃馨",
+      "category": "節慶限定",
+      "weight": 10,
+      "supports_face": true,
+      "season_window": ["05-01", "05-14"],
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物被大片粉色康乃馨花叢環繞，穿著溫柔的洋裝，笑容慈祥幸福，柔和陽光，感恩氛圍。上方「母親節快樂」，下方「{blessing}」。",
+      "scene_prompt": "大片粉色與紅色康乃馨花束，緞帶與感恩卡片，柔和溫暖的光線。上方「母親節快樂」，下方「{blessing}」。"
+    },
+    {
+      "id": "fathers_day",
+      "name": "父親節如山",
+      "category": "節慶限定",
+      "weight": 10,
+      "supports_face": true,
+      "season_window": ["08-01", "08-10"],
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物穿著帥氣襯衫站在高山之巔，背影如山般可靠，陽光灑落，溫暖堅毅。上方「父親節快樂」，下方「{blessing}」。",
+      "scene_prompt": "巍峨高山與溫暖晨光，山巒如父親的背影般沉穩可靠，搭配領帶與工具的溫馨插畫元素。上方「父親節快樂」，下方「{blessing}」。"
+    },
+    {
+      "id": "qixi_bridge",
+      "name": "七夕鵲橋",
+      "category": "節慶限定",
+      "weight": 8,
+      "supports_face": false,
+      "season_window": ["08-15", "08-31"],
+      "scene_prompt": "七夕夜空銀河璀璨，喜鵲搭成的橋橫跨星河，織女牛郎星的浪漫傳說，夢幻星光。上方「七夕快樂」，下方「{blessing}」。"
+    },
+    {
+      "id": "mid_autumn",
+      "name": "中秋團圓",
+      "category": "節慶限定",
+      "weight": 10,
+      "supports_face": true,
+      "season_window": ["09-15", "10-10"],
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物在滿月下的庭院中賞月，桌上擺著月餅與柚子，桂花飄香，溫馨團圓氛圍。上方「中秋節快樂」，下方「{blessing}」。",
+      "scene_prompt": "金黃滿月高掛夜空，庭院中月餅、柚子與桂花，玉兔搗藥剪影，團圓溫馨。上方「中秋節快樂」，下方「{blessing}」。"
+    },
+    {
+      "id": "double_ninth",
+      "name": "重陽登高",
+      "category": "節慶限定",
+      "weight": 8,
+      "supports_face": false,
+      "season_window": ["10-05", "10-25"],
+      "scene_prompt": "重陽節登高望遠，金黃菊花盛開，山巒層疊秋意濃，茱萸紅豔，敬老感恩氛圍。上方「重陽佳節」，下方「{blessing}」。"
+    },
+    {
+      "id": "christmas_snow",
+      "name": "聖誕雪花",
+      "category": "節慶限定",
+      "weight": 8,
+      "supports_face": true,
+      "season_window": ["12-15", "12-31"],
+      "face_prompt": "請保留參考照片中人物的五官特徵。人物戴著聖誕帽、穿著紅色毛衣，站在裝飾華麗的聖誕樹旁，雪花飄落，壁爐暖光，溫馨聖誕氛圍。上方「聖誕快樂」，下方「{blessing}」。",
+      "scene_prompt": "裝飾華麗的聖誕樹與壁爐，雪花飄落，禮物堆疊，紅金綠的溫馨聖誕配色。上方「聖誕快樂」，下方「{blessing}」。"
+    },
+    {
+      "id": "new_year_dawn",
+      "name": "元旦曙光",
+      "category": "節慶限定",
+      "weight": 9,
+      "supports_face": false,
+      "season_window": ["12-30", "01-05"],
+      "scene_prompt": "新年第一道曙光從海平面升起，金色光芒萬丈，嶄新希望的一年開始。上方「新年快樂」，下方「{blessing}」。"
+    }
+  ]
+}
