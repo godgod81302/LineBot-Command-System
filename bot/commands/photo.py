@@ -12,14 +12,15 @@ class SetupCommand(Command):
     names = ("設定", "上傳照片", "setup")
     usage = "#設定"
     description = "上傳 1～3 張正面個人照（長輩圖、改圖用）"
-    private_only = True
 
     async def run(self, ctx: Context) -> None:
         storage.set_state(ctx.user_id, "awaiting_photos", ttl_secs=900)
+        group_note = "（注意：在群組上傳的照片，群組成員都看得到）\n" if ctx.is_group else ""
         await line_api.send_text(
             ctx.client, ctx.reply_target, ctx.reply_token,
             "📷 請直接上傳 1～3 張「清晰正面、光線充足」的個人照片。\n"
             "上傳完打「完成」即可；15 分鐘內有效。\n"
+            f"{group_note}"
             "（照片只存在我們的伺服器，用於生成你的專屬圖片）",
         )
 
