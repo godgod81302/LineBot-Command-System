@@ -110,11 +110,12 @@ class EditCommand(Command):
 @register
 class ElderCommand(Command):
     names = ("長輩圖", "早安圖", "elder")
-    usage = "#長輩圖（加「無臉」變純風景祝福圖）"
+    usage = "#長輩圖（可接主題，例：#長輩圖 中秋節；加「無臉」變純風景）"
     description = "生成一張有創意的長輩圖，每次都不同"
 
     async def run(self, ctx: Context) -> None:
         with_face = "無臉" not in ctx.args
+        theme = ctx.args.replace("無臉", "").strip()
         photos = storage.get_user_photos(ctx.user_id) if with_face else []
 
         if with_face and not photos:
@@ -127,8 +128,12 @@ class ElderCommand(Command):
             )
             return
 
-        style = elder_picker.pick_style(ctx.user_id, with_face)
-        prompt, label = elder_picker.render_prompt(style, with_face)
+        if theme:
+            prompt, label = elder_picker.render_custom_prompt(theme, with_face)
+            storage.record_elder_style(ctx.user_id, f"custom:{theme}")
+        else:
+            style = elder_picker.pick_style(ctx.user_id, with_face)
+            prompt, label = elder_picker.render_prompt(style, with_face)
         kind = "elder_face" if with_face else "elder_scene"
 
         async def produce():

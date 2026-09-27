@@ -81,6 +81,31 @@ def pick_style(line_user_id: str, with_face: bool, now: datetime | None = None) 
     return chosen
 
 
+def render_custom_prompt(theme: str, with_face: bool, now: datetime | None = None) -> tuple[str, str]:
+    """自訂主題（#長輩圖 中秋節）→ 回傳 (prompt, 顯示名)。沿用風格庫的問候/祝福規格。"""
+    lib = load_library()
+    now = now or datetime.now()
+    greeting = greeting_for(now.hour, lib)
+    blessing = random.choice(lib.get("blessings", ["平安喜樂"]))
+    theme = theme.strip()[:60]
+
+    if with_face:
+        prompt = (
+            "請完整保留參考照片中人物的五官、臉型與神韻，讓人一眼就認出是同一個人。"
+            f"以「{theme}」為主題為這位人物設計造型與場景：服裝、妝髮、背景、色調都要呼應主題，"
+            "畫面精緻、溫暖喜氣、適合長輩問候。"
+            f"畫面上方以配合主題的美術字體寫著大大的「{greeting}」，下方以較小字體寫著「{blessing}」。"
+        )
+    else:
+        prompt = (
+            f"以「{theme}」為主題創作一張長輩問候圖：構圖飽滿、色彩明亮溫暖、喜氣祥和，"
+            "適合長輩問候的風格。"
+            f"畫面上方以優雅書法字體寫著大大的「{greeting}」，下方以較小的紅色楷書寫著「{blessing}」。"
+        )
+    label = f"自訂主題・{theme}（{greeting}）"
+    return prompt, label
+
+
 def render_prompt(style: dict, with_face: bool, now: datetime | None = None) -> tuple[str, str]:
     """回傳 (prompt, 風格顯示名)。"""
     lib = load_library()
