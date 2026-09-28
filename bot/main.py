@@ -180,6 +180,8 @@ async def _handle_image(client: httpx.AsyncClient, user_id: str, reply_target: s
 
 async def _generate_elder(ctx: Context, greeting: str | None = None) -> None:
     """產生一張長輩圖並回覆（reply 優先）。greeting 會併入同一批訊息。"""
+    if not await gen_service.check_quota(ctx):
+        return
     photos = storage.get_user_photos(ctx.user_id)
     with_face = bool(photos)
     try:

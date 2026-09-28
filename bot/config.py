@@ -36,5 +36,8 @@ ELDER_STYLE_DEDUP = int(os.getenv("LINEBOT_ELDER_STYLE_DEDUP", "12"))
 
 MAX_USER_PHOTOS = int(os.getenv("LINEBOT_MAX_USER_PHOTOS", "3"))
 
+# 未訂閱用戶的終身試用張數；訂閱戶（#訂閱）每日無上限
+TRIAL_IMAGE_LIMIT = int(os.getenv("LINEBOT_TRIAL_IMAGE_LIMIT", "10"))
+
 for _d in (DATA_DIR, MEDIA_DIR, PHOTO_DIR):
     _d.mkdir(parents=True, exist_ok=True)

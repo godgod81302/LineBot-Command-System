@@ -18,6 +18,22 @@ def public_media_url(name: str) -> str:
     return f"{config.PUBLIC_BASE_URL}/linebot/media/{name}"
 
 
+async def check_quota(ctx: Context) -> bool:
+    """額度檢查：訂閱戶無限；未訂閱終身 TRIAL_IMAGE_LIMIT 張。超額回覆提示並回 False。"""
+    if storage.is_subscribed(ctx.user_id):
+        return True
+    used = storage.count_successful_generations(ctx.user_id)
+    if used < config.TRIAL_IMAGE_LIMIT:
+        return True
+    await line_api.send_text(
+        ctx.client, ctx.reply_target, ctx.reply_token,
+        f"你的免費試用 {config.TRIAL_IMAGE_LIMIT} 張已用完囉！\n"
+        "打「#訂閱」成為訂閱戶：每日生圖無上限，\n"
+        f"而且每天 {config.DAILY_PUSH_TIME} 自動送一張長輩圖給你 ✨",
+    )
+    return False
+
+
 async def run_generation(
     ctx: Context,
     kind: str,
@@ -29,6 +45,8 @@ async def run_generation(
 
     replyToken 只能回一次，所以不發「生成中」訊息；一對一改用免費的 loading 動畫。
     """
+    if not await check_quota(ctx):
+        return
     if not ctx.is_group:
         await line_api.start_loading(ctx.client, ctx.user_id)
     try:

@@ -182,3 +182,21 @@ def recent_elder_styles(line_user_id: str, limit: int) -> list[str]:
             (line_user_id, limit),
         ).fetchall()
     return [r["style_id"] for r in rows]
+
+
+def is_subscribed(line_user_id: str) -> bool:
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT subscribed FROM users WHERE line_user_id = ?", (line_user_id,),
+        ).fetchone()
+    return bool(row and row["subscribed"])
+
+
+def count_successful_generations(line_user_id: str) -> int:
+    """成功生圖累計張數（試用額度計算用）。"""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT COUNT(*) AS n FROM generations WHERE line_user_id = ? AND status = 'succeeded'",
+            (line_user_id,),
+        ).fetchone()
+    return int(row["n"] if row else 0)
