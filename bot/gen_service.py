@@ -4,7 +4,7 @@ from __future__ import annotations
 import uuid
 from typing import Awaitable, Callable
 
-from . import config, line_api, storage
+from . import config, image_api, line_api, storage
 from .commands.base import Context
 
 
@@ -51,13 +51,18 @@ async def run_generation(
         await line_api.start_loading(ctx.client, ctx.user_id)
     try:
         images = await produce()
+    except image_api.ImageGenError as exc:
+        storage.log_generation(ctx.user_id, kind, prompt, None, "failed", str(exc)[:500])
+        await line_api.send_text(
+            ctx.client, ctx.reply_target, ctx.reply_token,
+            exc.user_message,
+        )
+        return
     except Exception as exc:
         storage.log_generation(ctx.user_id, kind, prompt, None, "failed", str(exc)[:500])
         await line_api.send_text(
             ctx.client, ctx.reply_target, ctx.reply_token,
-            "😥 生成失敗了，可能是上游忙碌或內容被擋下。\n"
-            "請稍後再試一次，或換個說法。\n"
-            f"（技術訊息：{str(exc)[:200]}）",
+            "😥 生成失敗了，可能是上游忙碌或網路不穩。\n請稍後再試一次。",
         )
         return
 
